@@ -1,1 +1,59 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="شهر فیلم؛ معرفی فیلم‌های سینمایی، خلاصه داستان و ژانرها">
+<title>شهر فیلم | معرفی فیلم‌های سینمایی</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101116;color:#f5f5f5;font-family:Tahoma,Arial,sans-serif}
+header{padding:30px 16px;background:linear-gradient(135deg,#30233e,#101116);text-align:center;border-bottom:2px solid #e0b65c}
+h1{color:#f4c96b;font-size:34px;margin:8px}
+header p{color:#ddd;line-height:1.8}
+main{max-width:1000px;margin:auto;padding:20px}
+h2{font-size:21px}
+input{width:100%;padding:15px;border-radius:12px;border:1px solid #555;background:#202129;color:white;font-size:16px;margin:12px 0 24px}
+.films{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:16px}
+.film{background:#202129;border:1px solid #383943;border-radius:14px;overflow:hidden}
+.poster{height:175px;background:linear-gradient(145deg,#49405e,#171720);display:flex;align-items:center;justify-content:center;font-size:54px}
+.info{padding:12px}
+.info h2{font-size:17px;margin:5px 0 10px}
+.info p{font-size:13px;line-height:1.9;color:#ccc}
+.tag{color:#f4c96b;font-size:12px;line-height:1.8}
+a{color:#f4c96b}
+footer{text-align:center;color:#aaa;padding:30px 15px;font-size:13px;line-height:2}
+</style>
+</head>
+<body>
+<header>
+<h1>🎬 شهر فیلم</h1>
+<p>دنیای فیلم‌ها، یک جست‌وجو تا ماجراجویی بعدی تو</p>
+</header>
+<main>
+<h2>فیلم مورد علاقه‌ات را پیدا کن</h2>
+<input id="search" placeholder="نام فیلم، سال یا ژانر را بنویس..." oninput="filterFilms()">
+<div class="films" id="films"></div>
+</main>
+<footer>شهر فیلم | معرفی فیلم و دنیای داستان‌ها<br>برای تماشای فیلم، از سرویس‌های قانونی استفاده کنید.</footer>
+<script>
+const movies=[
+{title:"میان‌ستاره‌ای",en:"Interstellar",genre:"علمی تخیلی",year:"2014",desc:"سفری بزرگ در فضا برای یافتن آینده‌ای برای بشر.",emoji:"🚀"},
+{title:"جهنده",en:"Jumper",genre:"اکشن، علمی تخیلی",year:"2008",desc:"جوانی که توانایی جابه‌جایی آنی به مکان‌های دور را دارد.",emoji:"🌌"},
+{title:"تلقین",en:"Inception",genre:"علمی تخیلی، هیجان‌انگیز",year:"2010",desc:"ماجرایی پیچیده در جهان رؤیاها و ذهن انسان.",emoji:"🌀"},
+{title:"مریخی",en:"The Martian",genre:"ماجراجویی، علمی تخیلی",year:"2015",desc:"تلاش یک فضانورد برای زنده ماندن در سیاره مریخ.",emoji:"🪐"},
+{title:"پارک ژوراسیک",en:"Jurassic Park",genre:"ماجراجویی",year:"1993",desc:"پارکی شگفت‌انگیز که دایناسورها در آن زنده شده‌اند.",emoji:"🦖"},
+{title:"نگهبانان کهکشان",en:"Guardians of the Galaxy",genre:"اکشن، ماجراجویی",year:"2014",desc:"گروهی متفاوت در مأموریتی فضایی برای نجات کهکشان.",emoji:"🌠"},
+{title:"درون و بیرون",en:"Inside Out",genre:"انیمیشن",year:"2015",desc:"داستان احساسات گوناگون در ذهن یک کودک.",emoji:"🎨"},
+{title:"لبه فردا",en:"Edge of Tomorrow",genre:"اکشن، علمی تخیلی",year:"2014",desc:"سربازی که در نبردی عجیب بارها یک روز را تجربه می‌کند.",emoji:"⚔️"}
+];
+function filterFilms(){
+const q=document.getElementById("search").value.trim().toLowerCase();
+const list=movies.filter(m=>(m.title+" "+m.en+" "+m.genre+" "+m.year).toLowerCase().includes(q));
+document.getElementById("films").innerHTML=list.map(m=>'<article class="film"><div class="poster">'+m.emoji+'</div><div class="info"><h2>'+m.title+'</h2><div class="tag">'+m.genre+' · '+m.year+'</div><p>'+m.desc+'</p><a href="https://www.justwatch.com/" target="_blank" rel="noopener noreferrer">جست‌وجوی راه تماشای قانونی</a></div></article>').join("")||"<p>فیلمی پیدا نشد. نام دیگری جست‌وجو کن.</p>";
+}
+filterFilms();
+</script>
+</body>
+</html>
